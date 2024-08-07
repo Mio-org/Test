@@ -29,11 +29,3 @@ if response.status_code == 200:
         with z.open(csv_filename) as f:
             # Read CSV file into a DataFrame
             df_raw = pd.read_csv(f)
-
-    # Display info and shape of the DataFrame
-    print(df_raw.info())
-    print(df_raw.shape)
-    # Display the first few rows of the DataFrame
-    print(df_raw.head())
-else:
-    print(f"Failed to download ZIP file from URL: {url}. Response status code: {response.status_code}")
