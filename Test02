@@ -1,0 +1,37 @@
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import numpy as np
+from zipfile import ZipFile
+from io import BytesIO
+from google.cloud import storage
+from io import StringIO
+import requests
+import zipfile
+import os
+
+
+# URL of the ZIP file
+url = "https://bikeshare.metro.net/wp-content/uploads/2024/04/metro-trips-2024-q1.zip"
+
+# Specify user-agent
+user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+
+# Make request with specified user-agent
+response = requests.get(url, headers={'User-Agent': user_agent})
+
+# Check if request was successful
+if response.status_code == 200:
+    # Read the content of the ZIP file
+    with zipfile.ZipFile(BytesIO(response.content)) as z:
+        # Assume there's only one CSV file in the ZIP archive
+        csv_filename = z.namelist()[0]
+        with z.open(csv_filename) as f:
+            # Read CSV file into a DataFrame
+            df_raw = pd.read_csv(f)
+
+    # Display info and shape of the DataFrame
+    print(df_raw.info())
+    print(df_raw.shape)
+    # Display the first few rows of the DataFrame
+    print(df_raw.head())
