@@ -35,3 +35,8 @@ if response.status_code == 200:
     print(df_raw.shape)
     # Display the first few rows of the DataFrame
     print(df_raw.head())
+ # Display info and shape of the DataFrame
+    print(df_raw.info())
+    print(df_raw.shape)
+    # Display the first few rows of the DataFrame
+    print(df_raw.head())
