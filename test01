@@ -65,3 +65,12 @@ if response.status_code == 200:
         with z.open(csv_filename) as f:
             # Read CSV file into a DataFrame
             df_raw = pd.read_csv(f)
+# Check if request was successful
+if response.status_code == 200:
+    # Read the content of the ZIP file
+    with zipfile.ZipFile(BytesIO(response.content)) as z:
+        # Assume there's only one CSV file in the ZIP archive
+        csv_filename = z.namelist()[0]
+        with z.open(csv_filename) as f:
+            # Read CSV file into a DataFrame
+            df_raw = pd.read_csv(f)
