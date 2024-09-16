@@ -65,6 +65,8 @@ if response.status_code == 200:
         with z.open(csv_filename) as f:
             # Read CSV file into a DataFrame
             df_raw = pd.read_csv(f)
+<<<<<<< miouser44-patch-1
+=======
 # Check if request was successful
 if response.status_code == 200:
     # Read the content of the ZIP file
@@ -74,3 +76,4 @@ if response.status_code == 200:
         with z.open(csv_filename) as f:
             # Read CSV file into a DataFrame
             df_raw = pd.read_csv(f)
+>>>>>>> main
